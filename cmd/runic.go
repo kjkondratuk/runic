@@ -24,26 +24,18 @@ var (
 func main() {
 	text := os.Args[1]
 
-	// invert the map first so we can go from characters to runes
-	reverse := invertMap(static.RunicAlphabet, defaultExcludes...)
+	fmt.Printf("Converting [%s]...\n", text)
 
-	for k, v := range reverse {
-		//if k == "S" {
-			fmt.Println(k, string(v))
-		//}
-	}
-
-	var glyph rune
 	for _, r := range text {
-		if r == ' ' {
-			glyph = r
-		} else if r == '.' {
-			glyph = '\u16eb'
-		} else {
-			glyph = reverse[strings.ToUpper(string(r))][0]
+		for _, c := range static.RunicAlphabet {
+			if contains(c.Nemonics, strings.ToUpper(string(r))) {
+				fmt.Print(string(c.Rune))
+			}
 		}
-		fmt.Print(string(glyph))
 	}
+
+	fmt.Println("...Finished!")
+	os.Exit(0)
 }
 
 func contains(s []string, e string) bool {
