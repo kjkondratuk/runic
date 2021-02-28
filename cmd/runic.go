@@ -29,12 +29,12 @@ func main() {
 	for _, r := range text {
 		for _, c := range static.RunicAlphabet {
 			if contains(c.Nemonics, strings.ToUpper(string(r))) {
-				fmt.Print(string(c.Rune))
+				fmt.Printf("%s[%s]", string(c.Rune), string(r))
 			}
 		}
 	}
 
-	fmt.Println("...Finished!")
+	fmt.Println("\n...Finished!")
 	os.Exit(0)
 }
 
