@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/kjkondratuk/runic-cipher/static"
 	"os"
@@ -8,33 +9,40 @@ import (
 )
 
 var (
-	defaultExcludes = []string {
-		"LONG-BRANCH",
-		"SHORT-TWIG",
-		"DOTTED",
-		"PUNCTUATION",
-		"OPEN",
-		"ICELANDIC",
-		"FRANKS-CASKET",
-		"TOLKEIN",
-		"GOLDEN-NUMBER",
-	}
+	defaultDialect = ""
 )
 
 func main() {
-	text := os.Args[1]
+	text := flag.String("t", "<text>", "")
+	dialect := flag.String("d", "ELDER-FUTHARK", "ELDER-FUTHARK, MEDIEVAL")
+	flag.Parse()
 
-	fmt.Printf("Converting [%s]...\n", text)
+	fmt.Printf("Converting [%s]...\n", *text)
 
-	for _, r := range text {
+	var convertedString string
+	for _, r := range *text {
+		var translatedRune string
 		for _, c := range static.RunicAlphabet {
-			if contains(c.Nemonics, strings.ToUpper(string(r))) {
-				fmt.Printf("%s[%s]", string(c.Rune), string(r))
+			if contains(c.Nemonics, strings.ToUpper(string(r))) && containsAny(c.Tags, *dialect) {
+				translatedRune = string(c.Rune)
 			}
+		}
+		if translatedRune != "" {
+			//fmt.Printf("%s[%s]", translatedRune, string(r))
+			convertedString += translatedRune
+		} else {
+			convertedString += "#" + translatedRune
 		}
 	}
 
-	fmt.Println("\n...Finished!")
+	if strings.Contains(convertedString, "#") {
+		fmt.Printf("ERROR: Could not convert [%s] to runic error at position [%d]", convertedString, strings.Index(convertedString, "#"))
+		os.Exit(-1)
+	}
+
+	fmt.Printf("\n%s\n", convertedString)
+
+	fmt.Println("...Finished!")
 	os.Exit(0)
 }
 

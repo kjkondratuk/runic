@@ -19,6 +19,7 @@ const (
 )
 
 var RunicAlphabet = []RunicRune{
+	{' ', []string{EF, AS, YFL, YFS, M}, []string{" "}},
 	{'ᚠ', []string{EF, AS, YFL, YFS, M}, []string{"FEHU", "FEOH", "FE", "F"}},
 	{'ᚡ', []string{M}, []string{"V"}},
 	{'ᚢ', []string{EF, AS, YFL, YFS, M}, []string{"URUZ", "UR", "U"}},
@@ -37,7 +38,7 @@ var RunicAlphabet = []RunicRune{
 	{'ᚯ', []string{M}, []string{"OE"}},
 	{'ᚰ', []string{M}, []string{"ON"}},
 	{'ᚱ', []string{EF, AS, YFL, YFS, M}, []string{"RAIDO", "RAD", "REID", "R"}},
-	{'ᚲ', []string{EF}, []string{"KAUNA"}},
+	{'ᚲ', []string{EF}, []string{"KAUNA", "C"}},
 	{'ᚳ', []string{AS}, []string{"CEN"}},
 	{'ᚴ', []string{YFL, YFS, M}, []string{"KAUN", "K"}},
 	{'ᚵ', []string{M}, []string{"G"}},
@@ -108,4 +109,33 @@ var RunicAlphabet = []RunicRune{
 	{'ᛶ', []string{FC}, []string{"EH"}},
 	{'ᛷ', []string{FC}, []string{"AC"}},
 	{'ᛸ', []string{FC}, []string{"AESC"}},
+}
+
+var EnglishAlphabet = []RunicRune{
+	{'A', nil, nil},
+	{'B', nil, nil},
+	{'C', nil, nil},
+	{'D', nil, nil},
+	{'E', nil, nil},
+	{'F', nil, nil},
+	{'G', nil, nil},
+	{'H', nil, nil},
+	{'I', nil, nil},
+	{'J', nil, nil},
+	{'K', nil, nil},
+	{'L', nil, nil},
+	{'M', nil, nil},
+	{'N', nil, nil},
+	{'O', nil, nil},
+	{'P', nil, nil},
+	{'Q', nil, nil},
+	{'R', nil, nil},
+	{'S', nil, nil},
+	{'T', nil, nil},
+	{'U', nil, nil},
+	{'V', nil, nil},
+	{'W', nil, nil},
+	{'X', nil, nil},
+	{'Y', nil, nil},
+	{'Z', nil, nil},
 }
